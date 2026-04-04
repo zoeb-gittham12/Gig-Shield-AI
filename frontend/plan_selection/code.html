@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#3f4945",
+                    "surface": "#fcf9f8",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#72c26e",
+                    "inverse-primary": "#b2c5ff",
+                    "background": "#fcf9f8",
+                    "on-primary-container": "#91aeff",
+                    "outline-variant": "#bfc9c4",
+                    "surface-container": "#f0edec",
+                    "secondary-fixed-dim": "#84d5c5",
+                    "on-secondary-fixed": "#00201b",
+                    "primary-fixed": "#dae2ff",
+                    "primary": "#00286d",
+                    "on-tertiary-fixed": "#002204",
+                    "tertiary-fixed-dim": "#88d982",
+                    "on-secondary-fixed-variant": "#005046",
+                    "inverse-on-surface": "#f3f0ef",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "surface-bright": "#fcf9f8",
+                    "outline": "#707975",
+                    "on-background": "#1c1b1b",
+                    "on-secondary-container": "#0f6f62",
+                    "tertiary": "#003608",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#046b5e",
+                    "surface-variant": "#e5e2e1",
+                    "secondary-container": "#9defde",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#a3f69c",
+                    "surface-container-low": "#f6f3f2",
+                    "surface-tint": "#0c56d0",
+                    "inverse-surface": "#313030",
+                    "on-surface": "#1c1b1b",
+                    "surface-container-high": "#ebe7e7",
+                    "on-tertiary-fixed-variant": "#005312",
+                    "on-primary-fixed-variant": "#0040a2",
+                    "tertiary-container": "#004f11",
+                    "surface-container-highest": "#e5e2e1",
+                    "secondary-fixed": "#a0f2e1",
+                    "primary-container": "#003d9b",
+                    "surface-dim": "#dcd9d9",
+                    "on-primary-fixed": "#001848"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background: rgba(252, 249, 248, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .asymmetric-gradient {
+            background: linear-gradient(135deg, #00286d 0%, #003d9b 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-stone-50/80 dark:bg-stone-900/80 backdrop-blur-md flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-teal-900 dark:text-teal-400" data-icon="shield">shield</span>
+<h1 class="text-xl font-extrabold text-teal-950 dark:text-teal-100 font-headline tracking-tight">GigShield AI</h1>
+</div>
+<button class="active:scale-95 duration-150 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-teal-900 dark:text-teal-400" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto">
+<!-- Editorial Headline -->
+<section class="mb-10">
+<h2 class="text-3xl font-headline font-extrabold tracking-tight text-primary leading-tight">
+                Secure Your Earnings <br/>Against The Elements
+            </h2>
+<p class="text-on-surface-variant mt-2 text-lg">Pick a plan tailored to your delivery route and current weather trends.</p>
+</section>
+<!-- Signature Component: Active Shield Status -->
+<div class="relative overflow-hidden rounded-xl bg-secondary-fixed p-6 mb-12 shadow-sm border border-secondary-container/30">
+<div class="relative z-10 flex justify-between items-start">
+<div>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary/10 text-tertiary font-bold text-xs uppercase tracking-widest mb-3">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                        Live Analysis
+                    </span>
+<h3 id="riskTitle" class="text-2xl font-headline font-bold text-on-secondary-fixed">Risk Factor: Checking…</h3>
+<p id="riskDesc" class="text-on-secondary-fixed-variant mt-1">Fetching live weather for your city…</p>
+</div>
+<div class="asymmetric-gradient p-3 rounded-xl shadow-lg">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="cloud_sync" style="font-variation-settings: 'FILL' 1;">cloud_sync</span>
+</div>
+</div>
+<!-- Background Decoration -->
+<div class="absolute -right-10 -bottom-10 opacity-10">
+<span class="material-symbols-outlined text-[160px]" data-icon="security">security</span>
+</div>
+</div>
+<!-- Protection Plans Grid -->
+<div class="space-y-6">
+<!-- Plan 1: Recommended -->
+<div class="relative group">
+<div class="absolute -top-3 left-6 z-10 bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
+                    Recommended for You
+                </div>
+<div class="bg-surface-container-highest rounded-xl p-6 transition-all duration-300 hover:bg-white hover:shadow-xl hover:shadow-primary/5 group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-4">
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="water_drop">water_drop</span>
+</div>
+<div>
+<h4 class="text-xl font-headline font-bold text-on-surface">Monsoon Shield</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Trigger:</span>
+<span class="text-xs font-bold text-primary bg-primary-fixed px-2 py-0.5 rounded">&gt;10mm Rain</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-2xl font-headline font-extrabold text-primary">₹49</div>
+<div class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">/ weekly</div>
+</div>
+</div>
+<div class="mb-6 flex flex-wrap gap-3">
+<div class="flex items-center gap-1.5 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+<span>Payout: ₹500/day</span>
+</div>
+<div class="flex items-center gap-1.5 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+<span>Wait Time: 0 min</span>
+</div>
+</div>
+<button id="plan1Btn" class="w-full asymmetric-gradient text-white font-headline font-bold py-4 rounded-xl active:scale-[0.98] transition-transform">
+                        Select Monsoon Shield
+                    </button>
+</div>
+</div>
+<!-- Plan 2 -->
+<div class="bg-surface-container-low rounded-xl p-6 hover:bg-surface-container-high transition-colors">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-4">
+<div class="w-14 h-14 rounded-xl bg-orange-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-orange-600 text-3xl" data-icon="sunny">sunny</span>
+</div>
+<div>
+<h4 class="text-xl font-headline font-bold text-on-surface">Heatwave Guard</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Trigger:</span>
+<span class="text-xs font-bold text-orange-800 bg-orange-100 px-2 py-0.5 rounded">&gt;42°C Temp</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-2xl font-headline font-extrabold text-primary">₹35</div>
+<div class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">/ weekly</div>
+</div>
+</div>
+<div class="mb-6 flex flex-wrap gap-3">
+<div class="flex items-center gap-1.5 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+<span>Payout: ₹300/day</span>
+</div>
+<div class="flex items-center gap-1.5 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+<span>Health Kit Incl.</span>
+</div>
+</div>
+<button id="plan2Btn" class="w-full bg-white border border-outline-variant/30 text-primary font-headline font-bold py-4 rounded-xl active:scale-[0.98] transition-transform">
+                    Select Heatwave Guard
+                </button>
+</div>
+<!-- Plan 3 -->
+<div class="bg-surface-container-low rounded-xl p-6 hover:bg-surface-container-high transition-colors">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-4">
+<div class="w-14 h-14 rounded-xl bg-stone-200 flex items-center justify-center">
+<span class="material-symbols-outlined text-stone-600 text-3xl" data-icon="air">air</span>
+</div>
+<div>
+<h4 class="text-xl font-headline font-bold text-on-surface">Pollution Cover</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Trigger:</span>
+<span class="text-xs font-bold text-stone-800 bg-stone-200 px-2 py-0.5 rounded">AQI &gt;350</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-2xl font-headline font-extrabold text-primary">₹29</div>
+<div class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">/ weekly</div>
+</div>
+</div>
+<div class="mb-6 flex flex-wrap gap-3">
+<div class="flex items-center gap-1.5 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+<span>Payout: ₹250/day</span>
+</div>
+<div class="flex items-center gap-1.5 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+<span>N95 Mask Coupons</span>
+</div>
+</div>
+<button id="plan3Btn" class="w-full bg-white border border-outline-variant/30 text-primary font-headline font-bold py-4 rounded-xl active:scale-[0.98] transition-transform">
+                    Select Pollution Cover
+                </button>
+</div>
+</div>
+<!-- Decorative Info Card -->
+<div class="mt-12 p-8 rounded-3xl bg-stone-900 text-white relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-teal-400 font-bold uppercase tracking-widest text-xs mb-4">How it works</p>
+<h5 class="text-2xl font-headline font-bold mb-4 leading-tight">Instant Payouts <br/>No Paperwork.</h5>
+<p class="text-stone-400 text-sm leading-relaxed max-w-[240px]">
+                    Our AI monitors local weather stations. When the trigger condition is met, the claim is approved automatically within 15 minutes.
+                </p>
+</div>
+<div class="absolute -right-4 top-0 h-full w-1/3 opacity-20">
+<img class="h-full w-full object-cover" data-alt="professional gig economy delivery driver on motorcycle in urban setting at night with city lights reflecting on rain-slicked pavement" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX5ptgOypUYYiB8XFM74VQG4jxHmCKNuhDrObwCxu55g8R_wM97UIV5YR1J4-TGA7qjx00HxqvMIeZdhvL8zRFItTFL_ZvZilXrUuiRAJ2ZBAQ-P4EfMwBEmkv0O6tq8ICfPIuB8s0ahcLlKRcW5jEUYoqEeQbaTubAt3A0cvNk1I5pqQhA4hiNkQF7wa1AKxGwEiQpU1rJuxdhp0ZdV3PLjqZUE48jLqFs4WdKJEQlrseFPNnQKR-w_P9pbtAewVQ_TekEF-JPk2D"/>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-6 bg-stone-50/90 dark:bg-stone-950/90 backdrop-blur-xl rounded-t-3xl z-50 shadow-[0_-8px_24px_rgba(28,27,27,0.06)]">
+<a class="flex flex-col items-center gap-1 text-stone-500 dark:text-stone-400 px-5 py-2 hover:text-teal-600 dark:hover:text-teal-300 transition-transform duration-200 active:scale-90" href="../worker_dashboard/code.html">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[11px] font-['Inter'] font-semibold uppercase tracking-wider">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 bg-teal-100 dark:bg-teal-900/40 text-teal-900 dark:text-teal-100 rounded-2xl px-5 py-2 hover:text-teal-600 dark:hover:text-teal-300 transition-transform duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-[11px] font-['Inter'] font-semibold uppercase tracking-wider">Plans</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-stone-500 dark:text-stone-400 px-5 py-2 hover:text-teal-600 dark:hover:text-teal-300 transition-transform duration-200 active:scale-90" href="../payout_history/code.html">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-[11px] font-['Inter'] font-semibold uppercase tracking-wider">Payouts</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-stone-500 dark:text-stone-400 px-5 py-2 hover:text-teal-600 dark:hover:text-teal-300 transition-transform duration-200 active:scale-90" href="#" id="profileNavLink">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[11px] font-['Inter'] font-semibold uppercase tracking-wider">Profile</span>
+</a>
+</nav>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+const API_BASE = "http://127.0.0.1:8000/api/v1";
+
+function pageURL(page) {
+  return window.location.href.replace(/\/[^\/]+\/code\.html.*$/, "") + "/" + page + "/code.html";
+}
+
+function showToast(msg, type = "success") {
+  document.querySelectorAll(".gs-toast").forEach(e => e.remove());
+  if (!document.getElementById("gs-anim")) {
+    const s = document.createElement("style"); s.id = "gs-anim";
+    s.textContent = `@keyframes gsIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}`;
+    document.head.appendChild(s);
+  }
+  const bg = { success: "#16a34a", error: "#ba1a1a", info: "#00286d", warn: "#b45309" }[type] || "#00286d";
+  const el = document.createElement("div"); el.className = "gs-toast";
+  el.style.cssText = `position:fixed;top:20px;left:16px;right:16px;background:${bg};color:#fff;padding:14px 18px;border-radius:14px;font-weight:600;font-family:Inter,sans-serif;font-size:14px;z-index:9999;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.2);animation:gsIn .25s ease`;
+  el.textContent = msg; document.body.appendChild(el); setTimeout(() => el.remove(), 3200);
+}
+
+// ── LIVE WEATHER RISK BANNER ──────────────────────────────────────────────────
+async function loadWeatherRisk() {
+  const city = localStorage.getItem("city") || "Mumbai";
+  const riskTitle = document.getElementById("riskTitle");
+  const riskDesc = document.getElementById("riskDesc");
+  try {
+    const res = await fetch(`${API_BASE}/weather/status/public?city=${encodeURIComponent(city)}`);
+    if (!res.ok) return;
+    const w = await res.json();
+    const triggers = w.triggers_active || [];
+    const triggerLabels = { rain: "Heavy Rain", heat: "Extreme Heat", cold: "Cold Alert", aqi: "Poor Air Quality" };
+
+    if (triggers.length === 0) {
+      if (riskTitle) riskTitle.textContent = "Risk Factor: Low";
+      if (riskDesc) riskDesc.textContent = `Clear conditions in ${city}. ${Math.round(w.temperature_c)}°C, ${w.rainfall_mm}mm rain. A great day to ride!`;
+    } else if (triggers.length === 1) {
+      if (riskTitle) riskTitle.textContent = "Risk Factor: Medium";
+      if (riskDesc) riskDesc.textContent = `${triggerLabels[triggers[0]] || triggers[0]} detected in ${city} (${Math.round(w.temperature_c)}°C, ${w.rainfall_mm}mm). Active plan recommended.`;
+    } else {
+      if (riskTitle) riskTitle.textContent = "Risk Factor: High ⚠️";
+      if (riskDesc) riskDesc.textContent = `Multiple alerts in ${city}: ${triggers.map(t => triggerLabels[t] || t).join(" + ")}. Activate a plan now for immediate protection.`;
+    }
+  } catch (e) {
+    if (riskTitle) riskTitle.textContent = "Risk Factor: Unknown";
+    if (riskDesc) riskDesc.textContent = "Could not fetch live weather. Backend may be offline.";
+  }
+}
+
+// ── PLAN SUBSCRIBE ────────────────────────────────────────────────────────────
+async function subscribePlan(planKey, btn) {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    showToast("Please log in first.", "error");
+    setTimeout(() => { window.location.href = pageURL("onboarding_registration"); }, 1200);
+    return;
+  }
+
+  const origHTML = btn.innerHTML;
+  btn.disabled = true; btn.textContent = "Activating…"; btn.style.opacity = ".65";
+
+  let latitude = null, longitude = null;
+  try {
+    const pos = await new Promise((res, rej) =>
+      navigator.geolocation.getCurrentPosition(res, rej, { timeout: 3000 }));
+    latitude = pos.coords.latitude; longitude = pos.coords.longitude;
+  } catch { }
+
+  try {
+    const res = await fetch(`${API_BASE}/plans/subscribe`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+      body: JSON.stringify({ plan_key: planKey, latitude, longitude }),
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      localStorage.setItem("active_plan", planKey);
+      showToast(`${data.plan?.name || "Plan"} activated! ✅`, "success");
+      setTimeout(() => { window.location.href = pageURL("worker_dashboard"); }, 800);
+    } else if (res.status === 401) {
+      localStorage.removeItem("token");
+      showToast("Session expired — please log in again.", "error");
+      setTimeout(() => { window.location.href = pageURL("onboarding_registration"); }, 1500);
+    } else {
+      showToast(data.detail || "Subscription failed. Try again.", "error");
+      btn.disabled = false; btn.innerHTML = origHTML; btn.style.opacity = "";
+    }
+  } catch (err) {
+    console.error(err);
+    showToast("Cannot reach server. Is the backend running on port 8000?", "error");
+    btn.disabled = false; btn.innerHTML = origHTML; btn.style.opacity = "";
+  }
+}
+
+// ── WIRE UP ───────────────────────────────────────────────────────────────────
+document.getElementById("plan1Btn").addEventListener("click", function(e) { e.preventDefault(); subscribePlan("premium", this); });
+document.getElementById("plan2Btn").addEventListener("click", function(e) { e.preventDefault(); subscribePlan("standard", this); });
+document.getElementById("plan3Btn").addEventListener("click", function(e) { e.preventDefault(); subscribePlan("basic", this); });
+
+// Load live weather risk on page init
+loadWeatherRisk();
+</script>
+</body></html>

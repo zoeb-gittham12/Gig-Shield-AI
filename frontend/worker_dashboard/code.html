@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Worker Dashboard - GigShield AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#3f4945",
+                    "surface": "#fcf9f8",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#72c26e",
+                    "inverse-primary": "#b2c5ff",
+                    "background": "#fcf9f8",
+                    "on-primary-container": "#91aeff",
+                    "outline-variant": "#bfc9c4",
+                    "surface-container": "#f0edec",
+                    "secondary-fixed-dim": "#84d5c5",
+                    "on-secondary-fixed": "#00201b",
+                    "primary-fixed": "#dae2ff",
+                    "primary": "#00286d",
+                    "on-tertiary-fixed": "#002204",
+                    "tertiary-fixed-dim": "#88d982",
+                    "on-secondary-fixed-variant": "#005046",
+                    "inverse-on-surface": "#f3f0ef",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "surface-bright": "#fcf9f8",
+                    "outline": "#707975",
+                    "on-background": "#1c1b1b",
+                    "on-secondary-container": "#0f6f62",
+                    "tertiary": "#003608",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#046b5e",
+                    "surface-variant": "#e5e2e1",
+                    "secondary-container": "#9defde",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#a3f69c",
+                    "surface-container-low": "#f6f3f2",
+                    "surface-tint": "#0c56d0",
+                    "inverse-surface": "#313030",
+                    "on-surface": "#1c1b1b",
+                    "surface-container-high": "#ebe7e7",
+                    "on-tertiary-fixed-variant": "#005312",
+                    "on-primary-fixed-variant": "#0040a2",
+                    "tertiary-container": "#004f11",
+                    "surface-container-highest": "#e5e2e1",
+                    "secondary-fixed": "#a0f2e1",
+                    "primary-container": "#003d9b",
+                    "surface-dim": "#dcd9d9",
+                    "on-primary-fixed": "#001848"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift-via-bg { background-color: rgba(252, 249, 248, 0.8); }
+        .glass-card { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(12px); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-stone-50/80 dark:bg-stone-900/80 backdrop-blur-md flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-teal-900 dark:text-teal-400" data-icon="shield">shield</span>
+<h1 class="font-['Manrope'] font-bold tracking-tight text-xl font-extrabold text-teal-950 dark:text-teal-100">GigShield AI</h1>
+</div>
+<button class="material-symbols-outlined text-stone-500 dark:text-stone-400 hover:opacity-80 transition-opacity active:scale-95 duration-150" data-icon="notifications">notifications</button>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-lg mx-auto">
+<!-- Active Shield Status -->
+<section class="mb-8">
+<div class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary to-primary-container p-6 text-on-primary shadow-lg">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-9xl" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-xs font-bold uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                            Live Protection
+                        </span>
+</div>
+<p class="font-headline text-sm opacity-80 mb-1">Wallet Balance</p>
+<h2 id="walletBalance" class="font-headline text-5xl font-extrabold tracking-tight mb-6">₹—</h2>
+<div class="flex items-center justify-between glass-card rounded-2xl p-4 border border-white/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<p id="planBadge" class="text-[10px] uppercase font-bold tracking-widest opacity-70">Current Weekly Plan</p>
+<p id="planName" class="font-bold text-sm">Loading…</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-primary-container" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Risk & Weather -->
+<section class="grid grid-cols-2 gap-4 mb-8">
+<!-- Risk Score Gauge -->
+<div class="col-span-1 bg-surface-container-highest rounded-3xl p-5 flex flex-col items-center justify-center text-center">
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-4">Risk Score</p>
+<div class="relative w-24 h-24 flex items-center justify-center mb-2">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 100 100">
+<circle class="text-surface-container-high" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-secondary" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="180" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="wb_sunny">wb_sunny</span>
+</div>
+</div>
+<p id="riskLabel" class="font-headline font-bold text-secondary">—</p>
+<p id="riskCondition" class="text-xs text-on-surface-variant">Loading…</p>
+</div>
+<!-- Weather Widget -->
+<div class="col-span-1 bg-surface-container-high rounded-3xl p-5 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-on-surface opacity-60" data-icon="cloud">cloud</span>
+<p id="weatherTemp" class="text-2xl font-bold font-headline">—°C</p>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Precipitation</p>
+<div class="flex items-end gap-1">
+<p id="weatherRain" class="text-xl font-bold font-headline leading-none">—</p>
+<p class="text-[10px] font-semibold text-on-surface-variant pb-0.5">Rain</p>
+</div>
+<div class="mt-3 w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div id="rainBar" class="bg-secondary h-full rounded-full transition-all" style="width: 0%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Automated Payouts -->
+<section class="mb-8">
+<div class="flex items-center justify-between mb-4 px-2">
+<h3 class="font-headline font-bold text-lg text-primary">Automated Payouts</h3>
+<a href="../payout_history/code.html" class="text-xs font-bold text-secondary uppercase tracking-wider">View All</a>
+</div>
+<div class="space-y-3">
+<div id="recentPayouts"><p class="text-sm text-on-surface-variant text-center py-4">Loading payouts…</p></div>
+</div>
+</section>
+<!-- Education Tip Card -->
+<section class="mb-4">
+<div class="relative overflow-hidden rounded-3xl bg-secondary-container p-6 flex items-center gap-6">
+<div class="flex-1">
+<h4 class="font-headline font-extrabold text-on-secondary-container mb-1">Max Protection</h4>
+<p class="text-sm text-on-secondary-fixed-variant leading-relaxed">During monsoon season, active rainfall protection covers up to 100% of gig shortfalls.</p>
+</div>
+<div class="w-20 h-20 flex-shrink-0">
+<img alt="Weather gear" class="w-full h-full object-cover rounded-2xl shadow-sm" data-alt="Close up of a bright yellow waterproof raincoat fabric with water droplets on it, vibrant colors, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2WPWdm695yVXgdJp91pUhQsQaXt7GjyVMd5t9SIsXFj4YMVvTvl3bkyVWFVz_lzl125uggE_HzkCDqriH_GbuDNW45lUQTnHTggI7dsMLy7ibqJA9Z8hujGUMIIiXWVyXPFUaEL92KuMVFRxYOTvsb1YNxkadlhfOU3QG-kJeeiMef2y_YnXY1jIRWuFmEyjP33Moa42CUumwg1ctVV8O6te_sSQNkmkYQaEG6ZkPs1q4GrJAKI-P8gKUsgmGrjd85B2_HIjmKhx5"/>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-6 bg-stone-50/90 dark:bg-stone-950/90 backdrop-blur-xl rounded-t-3xl z-50 shadow-[0_-8px_24px_rgba(28,27,27,0.06)] border-t border-stone-200/20 dark:border-stone-800/20">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center gap-1 bg-teal-100 dark:bg-teal-900/40 text-teal-900 dark:text-teal-100 rounded-2xl px-5 py-2 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[11px] font-['Inter'] font-semibold uppercase tracking-wider">Home</span>
+</a>
+<!-- Plans -->
+<a class="flex flex-col items-center gap-1 text-stone-500 dark:text-stone-400 px-5 py-2 hover:text-teal-600 dark:hover:text-teal-300 active:scale-90 transition-transform duration-200" href="../plan_selection/code.html">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="text-[11px] font-['Inter'] font-semibold uppercase tracking-wider">Plans</span>
+</a>
+<!-- Payouts -->
+<a class="flex flex-col items-center gap-1 text-stone-500 dark:text-stone-400 px-5 py-2 hover:text-teal-600 dark:hover:text-teal-300 active:scale-90 transition-transform duration-200" href="../payout_history/code.html">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-[11px] font-['Inter'] font-semibold uppercase tracking-wider">Payouts</span>
+</a>
+<!-- Profile -->
+<a id="profileNavLink" class="flex flex-col items-center gap-1 text-stone-500 dark:text-stone-400 px-5 py-2 hover:text-teal-600 dark:hover:text-teal-300 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[11px] font-['Inter'] font-semibold uppercase tracking-wider">Profile</span>
+</a>
+</nav>
+<!-- FAB for Quick Support (Optional contextual add-on) -->
+<button class="fixed right-6 bottom-28 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center active:scale-90 transition-transform duration-200 z-40">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+</button>
+<script>
+const API_BASE = "http://127.0.0.1:8000/api/v1";
+
+function pageURL(page) {
+  return window.location.href.replace(/\/[^\/]+\/code\.html.*$/, "") + "/" + page + "/code.html";
+}
+
+function showToast(msg, type="success") {
+  document.querySelectorAll(".gs-toast").forEach(e=>e.remove());
+  if(!document.getElementById("gs-anim")){const s=document.createElement("style");s.id="gs-anim";s.textContent=`@keyframes gsIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}`;document.head.appendChild(s);}
+  const bg={success:"#16a34a",error:"#ba1a1a",info:"#00286d",warn:"#b45309"}[type]||"#00286d";
+  const el=document.createElement("div");el.className="gs-toast";
+  el.style.cssText=`position:fixed;top:20px;left:16px;right:16px;background:${bg};color:#fff;padding:14px 18px;border-radius:14px;font-weight:600;font-family:Inter,sans-serif;font-size:14px;z-index:9999;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.2);animation:gsIn .25s ease`;
+  el.textContent=msg;document.body.appendChild(el);setTimeout(()=>el.remove(),3200);
+}
+
+const TRIGGER_ICONS = { rain:"rainy", heat:"wb_sunny", cold:"ac_unit", aqi:"air" };
+const TRIGGER_LABELS = { rain:"Heavy Rain", heat:"Extreme Heat", cold:"Cold Alert", aqi:"Poor Air Quality", manual:"Manual" };
+const PLAN_NAMES = { basic:"Pollution Cover", standard:"Heatwave Guard", premium:"Monsoon Shield" };
+
+function formatDate(iso) {
+  const d = new Date(iso);
+  const now = new Date();
+  const diff = Math.floor((now - d) / 86400000);
+  if (diff === 0) return "Today " + d.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});
+  if (diff === 1) return "Yesterday";
+  return d.toLocaleDateString("en-IN", {day:"numeric", month:"short"});
+}
+
+function renderPayouts(claims) {
+  const container = document.getElementById("recentPayouts");
+  if (!claims || claims.length === 0) {
+    container.innerHTML = '<p class="text-sm text-on-surface-variant text-center py-6">No payouts yet. Get a plan to start earning protection.</p>';
+    return;
+  }
+  container.innerHTML = claims.slice(0, 3).map(c => {
+    const icon = TRIGGER_ICONS[c.trigger_type] || "bolt";
+    const label = TRIGGER_LABELS[c.trigger_type] || c.trigger_type;
+    const isPaid = c.status === "paid" || c.status === "approved";
+    const iconBg = c.trigger_type === "heat" ? "bg-orange-100" : c.trigger_type === "aqi" ? "bg-stone-200" : "bg-tertiary-fixed-dim";
+    const iconColor = c.trigger_type === "heat" ? "text-orange-700" : c.trigger_type === "aqi" ? "text-stone-600" : "text-on-tertiary-fixed";
+    return `<div class="bg-surface-container-low rounded-2xl p-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl ${iconBg} flex items-center justify-center">
+          <span class="material-symbols-outlined ${iconColor}" style="font-variation-settings:'FILL' 1">${icon}</span>
+        </div>
+        <div>
+          <p class="font-bold text-sm text-on-surface">${label} Trigger</p>
+          <p class="text-xs text-on-surface-variant">${formatDate(c.triggered_at)} • Auto</p>
+        </div>
+      </div>
+      <div class="text-right">
+        <p class="font-headline font-extrabold text-on-surface">₹${c.payout_amount}</p>
+        <p class="text-[10px] font-bold ${isPaid?"text-tertiary":"text-error"} uppercase">${isPaid?"Settled":"Rejected"}</p>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function updateWeather(weather) {
+  if (!weather) return;
+  const temp = document.getElementById("weatherTemp");
+  const rain = document.getElementById("weatherRain");
+  const bar = document.getElementById("rainBar");
+  const risk = document.getElementById("riskLabel");
+  const cond = document.getElementById("riskCondition");
+
+  if(temp) temp.textContent = `${Math.round(weather.temperature_c)}°C`;
+  
+  const rainPct = Math.min(100, Math.round((weather.rainfall_mm / 10) * 100));
+  if(rain) rain.textContent = `${weather.rainfall_mm}mm`;
+  if(bar) bar.style.width = rainPct + "%";
+
+  const triggers = weather.triggers_active || [];
+  if(risk) {
+    if(triggers.length === 0) { risk.textContent = "Low Risk"; risk.className = "font-headline font-bold text-secondary"; }
+    else if(triggers.length === 1) { risk.textContent = "Medium Risk"; risk.className = "font-headline font-bold text-orange-500"; }
+    else { risk.textContent = "High Risk"; risk.className = "font-headline font-bold text-error"; }
+  }
+  if(cond) {
+    cond.textContent = triggers.length ? `Active: ${triggers.map(t=>TRIGGER_LABELS[t]).join(", ")}` : "Clear conditions";
+  }
+}
+
+async function loadDashboard() {
+  const token = localStorage.getItem("token");
+  if (!token) { window.location.href = pageURL("onboarding_registration"); return; }
+
+  // Greeting
+  const name = localStorage.getItem("worker_name") || "Partner";
+  const greet = document.getElementById("workerGreeting");
+  if(greet) greet.textContent = `Hi, ${name} 👋`;
+
+  try {
+    // 1. Worker profile (also triggers auto claim check)
+    const profRes = await fetch(`${API_BASE}/workers/me`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    if (profRes.status === 401) {
+      localStorage.removeItem("token");
+      window.location.href = pageURL("onboarding_registration"); return;
+    }
+
+    const profile = await profRes.json();
+
+    // Update wallet
+    const wallet = document.getElementById("walletBalance");
+    if(wallet) wallet.textContent = `₹${(profile.wallet_balance || 0).toLocaleString("en-IN")}`;
+
+    // Update plan
+    const planName = document.getElementById("planName");
+    const planBadge = document.getElementById("planBadge");
+    if(planName) planName.textContent = PLAN_NAMES[profile.active_plan] || (profile.active_plan ? profile.active_plan : "No active plan");
+    if(planBadge) planBadge.textContent = profile.active_plan ? `${profile.active_plan.toUpperCase()} PLAN` : "NO PLAN ACTIVE";
+
+    // Store name
+    if(profile.name) { localStorage.setItem("worker_name", profile.name); if(greet) greet.textContent = `Hi, ${profile.name} 👋`; }
+
+    // 2. Weather
+    const city = profile.city || localStorage.getItem("city") || "Mumbai";
+    const weatherRes = await fetch(`${API_BASE}/weather/status/public?city=${encodeURIComponent(city)}`);
+    if(weatherRes.ok) { const w = await weatherRes.json(); updateWeather(w); }
+
+    // 3. Recent claims
+    const claimsRes = await fetch(`${API_BASE}/claims/?limit=3`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    if(claimsRes.ok) { const claims = await claimsRes.json(); renderPayouts(claims); }
+
+    // 4. Auto-trigger check (silent)
+    fetch(`${API_BASE}/claims/check-triggers`, {
+      method: "POST", headers: { Authorization: `Bearer ${token}` }
+    }).then(r => r.json()).then(newClaims => {
+      if(newClaims && newClaims.length > 0) {
+        showToast(`🎉 Payout triggered! ₹${newClaims[0].payout_amount} credited`, "success");
+        // Reload wallet
+        fetch(`${API_BASE}/workers/me`, { headers: { Authorization: `Bearer ${token}` }})
+          .then(r=>r.json()).then(p => {
+            if(wallet) wallet.textContent = `₹${(p.wallet_balance||0).toLocaleString("en-IN")}`;
+          });
+      }
+    }).catch(()=>{});
+
+  } catch(err) {
+    console.error(err);
+    showToast("Could not load dashboard data.", "error");
+  }
+}
+
+loadDashboard();
+</script>
+</body></html>
