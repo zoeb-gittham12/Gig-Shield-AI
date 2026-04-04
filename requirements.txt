@@ -7,6 +7,7 @@ passlib[bcrypt]==1.7.4
 httpx==0.28.0
 pydantic==2.10.2
 python-multipart==0.0.17
+asyncpg==0.30.0
 
 # Optional: swap SQLite for Postgres in production
 # asyncpg==0.30.0
