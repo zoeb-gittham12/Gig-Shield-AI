@@ -1,13 +1,3 @@
-import sys
-import traceback
-
-try:
-    from app.core.database import DATABASE_URL
-    print(f"DATABASE_URL loaded: {DATABASE_URL[:30]}...", flush=True)
-except Exception as e:
-    print(f"STARTUP ERROR: {e}", flush=True)
-    traceback.print_exc()
-    sys.exit(1)
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import auth, workers, plans, claims, weather, admin
