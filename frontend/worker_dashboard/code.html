@@ -215,21 +215,8 @@
 <button class="fixed right-6 bottom-28 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center active:scale-90 transition-transform duration-200 z-40">
 <span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
 </button>
+<script src="../_shared.js"></script>
 <script>
-const API_BASE = "http://127.0.0.1:8000/api/v1";
-
-function pageURL(page) {
-  return window.location.href.replace(/\/[^\/]+\/code\.html.*$/, "") + "/" + page + "/code.html";
-}
-
-function showToast(msg, type="success") {
-  document.querySelectorAll(".gs-toast").forEach(e=>e.remove());
-  if(!document.getElementById("gs-anim")){const s=document.createElement("style");s.id="gs-anim";s.textContent=`@keyframes gsIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}`;document.head.appendChild(s);}
-  const bg={success:"#16a34a",error:"#ba1a1a",info:"#00286d",warn:"#b45309"}[type]||"#00286d";
-  const el=document.createElement("div");el.className="gs-toast";
-  el.style.cssText=`position:fixed;top:20px;left:16px;right:16px;background:${bg};color:#fff;padding:14px 18px;border-radius:14px;font-weight:600;font-family:Inter,sans-serif;font-size:14px;z-index:9999;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.2);animation:gsIn .25s ease`;
-  el.textContent=msg;document.body.appendChild(el);setTimeout(()=>el.remove(),3200);
-}
 
 const TRIGGER_ICONS = { rain:"rainy", heat:"wb_sunny", cold:"ac_unit", aqi:"air" };
 const TRIGGER_LABELS = { rain:"Heavy Rain", heat:"Extreme Heat", cold:"Cold Alert", aqi:"Poor Air Quality", manual:"Manual" };
