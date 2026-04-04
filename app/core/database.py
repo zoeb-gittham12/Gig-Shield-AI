@@ -2,7 +2,10 @@ import os
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:////tmp/gigshield.db")
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL environment variable not set!")
 
 engine = create_async_engine(DATABASE_URL, echo=True)
 
