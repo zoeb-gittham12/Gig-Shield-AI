@@ -297,7 +297,7 @@ document.getElementById("registerBtn").addEventListener("click", async (e) => {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name, mobile, password: "test123",
-          city, platform: selectedPlatform,
+          city, platform: selectedPlatform.toLowerCase(),
           latitude: coords.latitude, longitude: coords.longitude
         })
       });
