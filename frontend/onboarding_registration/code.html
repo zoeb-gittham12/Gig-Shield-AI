@@ -205,7 +205,11 @@
 <script src="../_shared.js"></script>
 <!-- Suppressed BottomNavBar (Mandate: Suppress navigation if transactional/onboarding) -->
 <script>
-// ── CONFIG ───────────────────────────────────────────────────────────────────
+
+  const API_BASE = "https://gig-shield-ai-punu.onrender.com/api/v1";
+// Wake up the Render backend on page load
+fetch(`${API_BASE.replace('/api/v1',''  )}/health`).catch(() => {});
+  // ── CONFIG ───────────────────────────────────────────────────────────────────
 // ── MODE TOGGLE (Register vs Login) ──────────────────────────────────────────
 let isLoginMode = false;
 
@@ -321,7 +325,7 @@ document.getElementById("registerBtn").addEventListener("click", async (e) => {
     }
   } catch (err) {
     console.error(err);
-    showToast("Cannot reach server. Is backend running on port 8000?", "error");
+    showToast("Cannot reach server. Backend may be waking up — please try again in 30 seconds.", "error");
     btn.disabled = false; btn.innerHTML = origHTML; btn.style.opacity = "";
   }
 });
